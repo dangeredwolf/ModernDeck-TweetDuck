@@ -12,6 +12,8 @@ enabled(){
 				.attr("data-mtd-css-name",name)
 				.addClass("mtd-stylesheet-extension")
 			)
+
+			$TDP.injectIntoNotificationsBefore(token, "css", "</head>", `<style type='text/css' data-mtd-css-name='${name}'>${contents.replace(/\&/g,"&amp;").replace(/\>/g,"&gt;").replace(/\</g,"&lt;").replace(/\"/g,"&quot;").replace(/\'/g,"&apos;")}</style>`);
 		});
 
 		if (!isStylesheetExtensionEnabled(name)) {
@@ -191,7 +193,6 @@ enabled(){
 	document.getElementsByTagName("html")[0].classList.add("mtd-head-left", "mtd-classic-nav")
 
 	$TDP.readFileRoot(this.$token, "moderndeck.css").then(contents => {
-		console.log(contents);
 		$(document.head).append($("<style>").html(contents).addClass("mtd-tweetduck-css"))
 	});
 

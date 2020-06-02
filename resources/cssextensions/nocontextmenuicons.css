@@ -1,0 +1,16 @@
+/*
+	nocontextmenuicons.css
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+.dropdown-menu a[data-action]:before,.dropdown-menu-url-item:before {
+	content:""!important;
+	display:none
+}
+
+.dropdown-menu a[data-action],.dropdown-menu-url-item:before {
+	font-size:14.5px;
+	padding-left:18px
+}

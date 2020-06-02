@@ -1,0 +1,10 @@
+/*
+	black.css
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+.light:root {
+	--primaryColor:#263238 !important;
+}

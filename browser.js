@@ -1,19 +1,23 @@
+constructor(){
+  super({
+    requiresPageReload: true
+  });
+}
 
 enabled(){
-	function enableStylesheetExtension(name, token) {
+	const me = this;
+
+	function setupCSS(key, cls, contents) {
+		$(document.head).append($("<style>").html(contents).addClass(cls));
+		$TDP.injectIntoNotificationsBefore(me.$token, "css-" + key, "</head>", `<style type='text/css' data-mtd-css-name='${key}'>${contents}</style>`);
+	}
+
+	function enableStylesheetExtension(name) {
 		if (name === "default" || $("#mtd_custom_css_"+name).length > 0)
 			return;
 
-		$TDP.readFileRoot(token, "css/" + name + ".css").then(contents => {
-			$(document.head).append(
-				$("<style>")
-				.html(contents)
-				.attr("rel","stylesheet")
-				.attr("data-mtd-css-name",name)
-				.addClass("mtd-stylesheet-extension")
-			)
-
-			$TDP.injectIntoNotificationsBefore(token, "css", "</head>", `<style type='text/css' data-mtd-css-name='${name}'>${contents.replace(/\&/g,"&amp;").replace(/\>/g,"&gt;").replace(/\</g,"&lt;").replace(/\"/g,"&quot;").replace(/\'/g,"&apos;")}</style>`);
+		$TDP.readFileRoot(me.$token, "css/" + name + ".css").then(contents => {
+			setupCSS(name, "mtd-stylesheet-extension", contents);
 		});
 
 		if (!isStylesheetExtensionEnabled(name)) {
@@ -24,7 +28,6 @@ enabled(){
 	function isStylesheetExtensionEnabled(name) {
 		return !!document.querySelector("link.mtd-stylesheet-extension[data-mtd-css-name=\"" + name + "\"\]");
 	}
-
 
 	function disableStylesheetExtension(name) {
 		if (!isStylesheetExtensionEnabled(name))
@@ -37,7 +40,7 @@ enabled(){
 		if (typeof a !== "object" || a === null)
 			throw "you forgot to pass the object";
 
-		return "@font-face{font-family:'"+(a.family||"Roboto")+"';font-style:"+(a.style||"normal")+";font-weight:"+(a.weight || "400")+";src:url(https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/common/resources/fonts/"+a.name+"."+(a.extension || "woff2")+") format('"+(a.format || "woff2")+"');"+"unicode-range:"+(a.range||"U+0000-FFFF")+"}\n";
+		return "@font-face{font-family:'"+(a.family||"Roboto")+"';font-style:"+(a.style||"normal")+";font-weight:"+(a.weight || "400")+";src:url(tdp://"+me.$token+"/root/fonts/"+a.name+"."+(a.extension || "woff2")+") format('"+(a.format || "woff2")+"');"+"unicode-range:"+(a.range||"U+0000-FFFF")+"}\n";
 	}
 
 	/*
@@ -163,24 +166,24 @@ enabled(){
 
 
 
-	enableStylesheetExtension("alert", this.$token);
-	enableStylesheetExtension("calendarDropdown", this.$token);
-	enableStylesheetExtension("contextmenu", this.$token);
-	enableStylesheetExtension("coredefinitions", this.$token);
-	enableStylesheetExtension("windowcontrol", this.$token);
-	enableStylesheetExtension("icon", this.$token);
-	enableStylesheetExtension("superclasses", this.$token);
-	enableStylesheetExtension("marginclasses", this.$token);
-	enableStylesheetExtension("emojipicker", this.$token);
-	enableStylesheetExtension("gifpicker", this.$token);
-	enableStylesheetExtension("emoji", this.$token);
-	enableStylesheetExtension("settings", this.$token);
-	enableStylesheetExtension("navigationdrawer", this.$token);
-	enableStylesheetExtension("welcome", this.$token);
-	enableStylesheetExtension("collapsed", this.$token);
-	enableStylesheetExtension("notifications", this.$token);
-	enableStylesheetExtension("classicnav", this.$token);
-	enableStylesheetExtension("accessibilityHelper", this.$token);
+	enableStylesheetExtension("alert");
+	enableStylesheetExtension("calendarDropdown");
+	enableStylesheetExtension("contextmenu");
+	enableStylesheetExtension("coredefinitions");
+	enableStylesheetExtension("windowcontrol");
+	enableStylesheetExtension("icon");
+	enableStylesheetExtension("superclasses");
+	enableStylesheetExtension("marginclasses");
+	enableStylesheetExtension("emojipicker");
+	enableStylesheetExtension("gifpicker");
+	enableStylesheetExtension("emoji");
+	enableStylesheetExtension("settings");
+	enableStylesheetExtension("navigationdrawer");
+	enableStylesheetExtension("welcome");
+	enableStylesheetExtension("collapsed");
+	enableStylesheetExtension("notifications");
+	enableStylesheetExtension("classicnav");
+	enableStylesheetExtension("accessibilityHelper");
 
 	let beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
 	beGone.remove();
@@ -188,27 +191,17 @@ enabled(){
 	let byebyeTweetDuck = document.querySelector("style#tweetduck-browser-css");
 	byebyeTweetDuck.remove();
 
-	console.log("HELLO");
-
 	document.getElementsByTagName("html")[0].classList.add("mtd-head-left", "mtd-classic-nav")
 
 	$TDP.readFileRoot(this.$token, "moderndeck.css").then(contents => {
-		$(document.head).append($("<style>").html(contents).addClass("mtd-tweetduck-css"))
+		setupCSS(name, "mtd-tweetduck-css", contents);
 	});
 
 	setTimeout(() => {
-
 		enableStylesheetExtension("dark", this.$token);
 	}, 100)
 }
 
-ready(){
-}
-
-configure(){
-
-}
-
 disabled(){
-
+	// TODO
 }

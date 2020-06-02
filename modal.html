@@ -1,0 +1,284 @@
+<div id="edit-design-panel" class="js-modal-panel mdl s-tall-fixed is-inverted-dark">
+  <header class="js-mdl-header mdl-header js-drag-handle">
+    <h3 class="mdl-header-title js-header-title">TweetDuck - Layout &amp; Design</h3>
+    <a href="#" class="mdl-dismiss js-dismiss link-normal-dark">
+      <i class="icon icon-close"></i>
+    </a>
+  </header>
+  <div class="mdl-inner">
+    <div id="edit-design-panel-content" class="mdl-content js-mdl-content horizontal-flow-container">
+      <div id="edit-design-panel-inner-cols">
+        <div class="l-column mdl-column">
+          
+          <!-- THEME -->
+          
+          <label class="txt-uppercase touch-larger-label">
+            <b>Theme</b>
+          </label>
+          <label class="radio">
+            <input data-td-theme="black" class="js-theme-radio touch-larger-label" name="theme" type="radio">
+            Black
+          </label>
+          <label class="radio">
+            <input data-td-theme="dark" class="js-theme-radio touch-larger-label" name="theme" type="radio">
+            Dark
+          </label>
+          <label class="radio">
+            <input data-td-theme="light" class="js-theme-radio touch-larger-label" name="theme" type="radio">
+            Light
+          </label>
+          
+          <!-- COLUMN SIZE -->
+          
+          <label class="txt-uppercase touch-larger-label">
+            <b>Columns</b>
+          </label>
+          <select data-td-key="columnWidth">
+            <option disabled></option>
+            <optgroup label="Fixed width">
+              <option value="270px">Narrow (270px)</option>
+              <option value="310px">Medium (310px)</option>
+              <option value="350px">Wide (350px)</option>
+              <option value="400px">Extreme (400px)</option>
+              <option value="custom-px">Custom</option>
+              <option value="change-custom-px">Change custom value...</option>
+            </optgroup>
+            <option disabled></option>
+            <optgroup label="Dynamic width">
+              <option value="/1">1 column on screen</option>
+              <option value="/2">2 columns on screen</option>
+              <option value="/3">3 columns on screen</option>
+              <option value="/4">4 columns on screen</option>
+              <option value="/5">5 columns on screen</option>
+              <option value="/6">6 columns on screen</option>
+            </optgroup>
+            <option disabled></option>
+          </select>
+          
+          <!-- COMPOSER SIZE -->
+          
+          <label class="txt-uppercase touch-larger-label">
+            <b>New Tweet panel</b>
+          </label>
+          <select data-td-key="composerWidth">
+            <option value="default">Default</option>
+            <option value="270px">Narrow (270px)</option>
+            <option value="310px">Medium (310px)</option>
+            <option value="350px">Wide (350px)</option>
+            <option value="custom-px">Custom</option>
+            <option value="change-custom-px">Change custom value...</option>
+          </select>
+          
+          <!-- FONT SIZE -->
+          
+          <label class="txt-uppercase touch-larger-label">
+            <b>Font size</b>
+          </label>
+          <select data-td-key="fontSize">
+            <option value="12px">Tiny (12px)</option>
+            <option value="13px">Small (13px)</option>
+            <option value="14px">Medium (14px)</option>
+            <option value="15px">Large (15px)</option>
+            <option value="16px">Largest (16px)</option>
+            <option value="custom-px">Custom</option>
+            <option value="change-custom-px">Change custom value...</option>
+          </select>
+          <label class="checkbox">
+            <input data-td-key="increaseQuoteTextSize" class="js-theme-checkbox touch-larger-label" type="checkbox">
+            Increase quoted tweet font size
+          </label>
+          <label class="checkbox">
+            <input data-td-key="smallComposeTextSize" class="js-theme-checkbox touch-larger-label" type="checkbox">
+            Small tweet input font size
+          </label>
+        </div>
+        
+        <div class="l-column mdl-column">
+          
+          <!-- LAYOUT -->
+          
+          <label class="txt-uppercase touch-larger-label">
+            <b>Layout</b>
+          </label>
+          <label class="checkbox">
+            <input data-td-key="hideTweetActions" class="js-theme-checkbox touch-larger-label" type="checkbox">
+            Hide tweet actions
+          </label>
+          <label class="checkbox">
+            <input data-td-key="moveTweetActionsToRight" class="js-theme-checkbox touch-larger-label" type="checkbox">
+            Tweet actions on the right side
+          </label>
+          
+          <!-- DESIGN -->
+          
+          <label class="txt-uppercase touch-larger-label">
+            <b>Design</b>
+          </label>
+          <label class="checkbox">
+            <input data-td-key="revertIcons" class="js-theme-checkbox touch-larger-label" type="checkbox">
+            Revert icon design
+          </label>
+          <label class="checkbox">
+            <input data-td-key="showCharacterCount" class="js-theme-checkbox touch-larger-label" type="checkbox">
+            Always show character count
+          </label>
+          <label class="checkbox">
+            <input data-td-key="themeColorTweaks" class="js-theme-checkbox touch-larger-label" type="checkbox">
+            Theme color tweaks
+          </label>
+          <label class="checkbox">
+            <input data-td-key="forceArialFont" class="js-theme-checkbox touch-larger-label" type="checkbox">
+            Use Arial as default font
+          </label>
+          
+          <!-- ADVANCED -->
+          
+          <label class="txt-uppercase touch-larger-label">
+            <b>Advanced</b>
+          </label>
+          <label class="checkbox">
+            <input data-td-key="optimizeAnimations" class="js-theme-checkbox touch-larger-label" type="checkbox">
+            Use more memory for smoother animations
+          </label>
+        </div>
+        
+        <div class="l-column mdl-column">
+      
+          <!-- AVATAR SHAPE -->
+        
+          <label class="txt-uppercase touch-larger-label">
+            <b>Avatar shape</b>
+          </label>
+          <div class="td-avatar-shape-container">
+            <div class="td-avatar-shape-item-outer" data-td-key="avatarRadius" data-td-value="2">
+              <div class="td-avatar-shape" style="border-radius:2%"></div>
+              <label>Square</label>
+            </div>
+            <div class="td-avatar-shape-item-outer" data-td-key="avatarRadius" data-td-value="10">
+              <div class="td-avatar-shape" style="border-radius:10%"></div>
+              <label>Legacy</label>
+            </div>
+            <div class="td-avatar-shape-item-outer" data-td-key="avatarRadius" data-td-value="30">
+              <div class="td-avatar-shape" style="border-radius:30%"></div>
+              <label>Round</label>
+            </div>
+            <div class="td-avatar-shape-item-outer" data-td-key="avatarRadius" data-td-value="50">
+              <div class="td-avatar-shape" style="border-radius:50%"></div>
+              <label>Circle</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- END -->
+    </div>
+    <footer class="padding-vxl txt-center">
+      <button class="js-dismiss Button--primary pull-right">
+        <span class="label">Done</span>
+      </button>
+    </footer>
+  </div>
+</div>
+
+<style type="text/css">
+  
+  /* Containers */
+  
+  #edit-design-panel {
+    width: 693px;
+    height: 424px;
+    background-color: #FFF;
+    box-shadow: 0 0 10px rgba(17, 17, 17, 0.5);
+  }
+  
+  #edit-design-panel .mdl-header {
+    color: #8899A6;
+  }
+  
+  #edit-design-panel .mdl-inner {
+    padding-top: 0;
+  }
+  
+  #edit-design-panel .mdl-content {
+    border: 1px solid #CCD6DD;
+    background: #EAEAEA;
+  }
+  
+  #edit-design-panel-inner-cols {
+    padding: 0 6px;
+  }
+  
+  #edit-design-panel-inner-cols .l-column {
+    padding: 15px 9px;
+    box-sizing: border-box;
+    width: 225px;
+    font-size: 0; /* fix custom font size breaking the modal layout */
+  }
+  
+  #edit-design-panel-inner-cols .l-column:nth-child(3) {
+    width: 200px;
+  }
+  
+  /* Elements */
+  
+  #edit-design-panel-content label.txt-uppercase {
+    margin-top: 18px;
+  }
+  
+  #edit-design-panel-content label.txt-uppercase:first-child {
+    margin-top: 0;
+  }
+  
+  #edit-design-panel-content label.radio {
+    display: inline-block;
+    margin: 0 16px 0 4px;
+    cursor: pointer;
+  }
+  
+  #edit-design-panel-content label.checkbox {
+    margin: 0 0 5px 4px;
+    cursor: pointer;
+  }
+  
+  #edit-design-panel-content select + label.checkbox {
+    margin-top: 9px;
+  }
+  
+  #edit-design-panel-content input.js-theme-checkbox, #edit-design-panel-content input.js-theme-radio {
+    margin-top: 1px;
+  }
+  
+  /* Avatar shape */
+  
+  .td-avatar-shape-container {
+    text-align: center;
+  }
+  
+  .td-avatar-shape-item-outer {
+    display: inline-block;
+    margin: 0 4px 10px;
+    padding: 16px 14px 8px;
+    box-sizing: border-box;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    border: 2px solid #F5F8FA;
+    background-color: #F5F8FA;
+  }
+  
+  .td-avatar-shape-item-outer:hover {
+    border-color: #888;
+  }
+  
+  .td-avatar-shape-item-outer.selected {
+    border-color: #666;
+  }
+  
+  .td-avatar-shape-item-outer label {
+    margin: 10px 0 0 !important;
+  }
+  
+  .td-avatar-shape {
+    width: 48px;
+    height: 48px;
+    background-color: #71BAF2;
+  }
+</style>

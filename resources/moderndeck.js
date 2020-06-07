@@ -3129,6 +3129,7 @@ let settingsData$1 = {
 	Released under the MIT licence
 */
 let store$1;
+var browserStorage = window.MODERNDECK_STORAGE || localStorage;
 
 if (isApp) {
   const Store = require('electron-store');
@@ -3148,7 +3149,7 @@ function getPref$1(id, defaul) {
   if (store$1) {
     if (store$1.has(id)) val = store$1.get(id);else val = undefined;
   } else {
-    val = localStorage.getItem(id);
+    val = browserStorage.getItem(id);
   }
   if (typeof val === "undefined") return defaul;
   if (val === "true") return true;else if (val === "false") return false;else return val;
@@ -3161,9 +3162,9 @@ function getPref$1(id, defaul) {
 */
 
 function purgePrefs() {
-  for (let key in localStorage) {
+  for (let key in browserStorage) {
     if (key.indexOf("mtd_") >= 0) {
-      localStorage.removeItem(key);
+      browserStorage.removeItem(key);
     }
   }
 
@@ -3191,7 +3192,7 @@ function setPref(id, p) {
       store$1.delete(id);
     }
   } else {
-    localStorage.setItem(id, p);
+    browserStorage.setItem(id, p);
   }
 }
 /*
@@ -3215,7 +3216,7 @@ function hasPref(id) {
   if (exists(store$1)) {
     hasIt = store$1.has(id);
   } else {
-    hasIt = localStorage.getItem(id) !== null && typeof localStorage.getItem(id) !== "undefined" && localStorage.getItem(id) !== undefined;
+    hasIt = browserStorage.getItem(id) !== null && typeof browserStorage.getItem(id) !== "undefined" && browserStorage.getItem(id) !== undefined;
   }
   return hasIt;
 }
@@ -4414,7 +4415,7 @@ function UINavDrawer() {
 	Released under the MIT licence
 */
 function FunctionPatcher() {
-  if (window.localStorage && typeof require === "undefined") {
+  if (window.localStorage && typeof require === "undefined" && !("MODERNDECK_STORAGE" in window)) {
     window.localStorage.actuallyClear = window.localStorage.clear;
 
     window.localStorage.clear = () => {
